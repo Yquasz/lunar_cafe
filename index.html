@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -67,4 +66,871 @@
       text-decoration: none;
       font-size: 0.7rem;
       letter-spacing: 3px;
-      text-transform: 
+      text-transform: uppercase;
+      opacity: 0.75;
+      transition: opacity 0.3s, color 0.3s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--gold-light); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(26,18,8,0.82) 0%,
+        rgba(26,18,8,0.55) 50%,
+        rgba(26,18,8,0.88) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 20px;
+      animation: fadeUp 1.4s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 1s 0.3s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4.5rem, 10vw, 9rem);
+      font-weight: 300;
+      line-height: 0.9;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeUp 1s 0.5s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .hero-subtitle {
+      font-size: 0.75rem;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: var(--mist);
+      margin-bottom: 55px;
+      margin-top: 18px;
+      opacity: 0;
+      animation: fadeUp 1s 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 1s 0.9s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--espresso);
+      border: none;
+      padding: 15px 40px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--cream);
+      border: 1px solid rgba(245,240,232,0.35);
+      padding: 15px 40px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.3s, color 0.3s, transform 0.3s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    /* scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 38px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeIn 1s 1.6s forwards;
+      z-index: 2;
+    }
+    .scroll-hint span {
+      font-size: 0.55rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--mist);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollDrop 1.8s 1.8s ease-in-out infinite;
+    }
+
+    /* ── MARQUEE STRIP ── */
+    .marquee-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+      overflow: hidden;
+      background: rgba(184,154,90,0.04);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 60px;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-item {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .marquee-dot {
+      color: var(--mist);
+      font-size: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 85vh;
+    }
+    .about-image {
+      position: relative;
+      overflow: hidden;
+    }
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.05);
+      transition: transform 8s ease;
+    }
+    .about-image:hover img { transform: scale(1.0); }
+    .about-image-label {
+      position: absolute;
+      bottom: 35px;
+      left: 35px;
+      font-size: 0.6rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.6);
+      border-left: 1px solid var(--gold);
+      padding-left: 14px;
+    }
+    .about-body {
+      background: var(--bark);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 70px;
+    }
+    .section-tag {
+      font-size: 0.6rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 30px;
+    }
+    .about-body h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 30px;
+      color: var(--warm-white);
+    }
+    .about-body h2 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .about-body p {
+      color: var(--mist);
+      line-height: 1.9;
+      font-size: 0.92rem;
+      max-width: 400px;
+      margin-bottom: 20px;
+    }
+    .about-divider {
+      width: 50px;
+      height: 1px;
+      background: var(--gold);
+      margin: 30px 0;
+      opacity: 0.5;
+    }
+    .about-stats {
+      display: flex;
+      gap: 45px;
+      margin-top: 10px;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--mist);
+      margin-top: 6px;
+    }
+
+    /* ── MENU PREVIEW ── */
+    .menu-section {
+      padding: 110px 8%;
+      background: var(--espresso);
+    }
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 70px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 30px;
+    }
+    .section-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      color: var(--warm-white);
+      line-height: 1;
+    }
+    .section-header h2 em { font-style: italic; color: var(--gold-light); }
+    .section-header a {
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .section-header a:hover { color: var(--gold-light); border-color: var(--gold-light); }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+    .menu-card {
+      background: var(--espresso);
+      padding: 45px 40px;
+      transition: background 0.4s;
+      cursor: default;
+    }
+    .menu-card:hover { background: var(--bark); }
+    .menu-card-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 2px;
+      margin-bottom: 22px;
+    }
+    .menu-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--warm-white);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .menu-card p {
+      font-size: 0.82rem;
+      color: var(--mist);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .menu-card-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--gold-light);
+      letter-spacing: 1px;
+    }
+
+    /* ── EXPERIENCE STRIP ── */
+    .experience {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .exp-panel {
+      position: relative;
+      height: 520px;
+      overflow: hidden;
+    }
+    .exp-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.45);
+      transition: filter 0.6s, transform 0.8s;
+    }
+    .exp-panel:hover img { filter: brightness(0.55); transform: scale(1.04); }
+    .exp-panel-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 40px 35px;
+      background: linear-gradient(to top, rgba(26,18,8,0.9) 0%, transparent 100%);
+    }
+    .exp-panel-tag {
+      font-size: 0.55rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .exp-panel h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 300;
+      color: var(--warm-white);
+    }
+
+    /* ── RESERVATION ── */
+    .reservation {
+      padding: 110px 8%;
+      background: var(--bark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .reservation-text .section-tag { margin-bottom: 24px; }
+    .reservation-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--warm-white);
+      margin-bottom: 24px;
+    }
+    .reservation-text h2 em { font-style: italic; color: var(--gold-light); }
+    .reservation-text p {
+      color: var(--mist);
+      line-height: 1.85;
+      font-size: 0.9rem;
+    }
+    .reservation-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label {
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .form-group input,
+    .form-group select {
+      background: rgba(245,240,232,0.04);
+      border: 1px solid var(--border);
+      color: var(--cream);
+      padding: 13px 16px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.3s;
+      appearance: none;
+    }
+    .form-group input::placeholder { color: var(--mist); }
+    .form-group input:focus,
+    .form-group select:focus { border-color: var(--gold); }
+    .form-group select option { background: var(--bark); }
+    .btn-submit {
+      background: var(--gold);
+      color: var(--espresso);
+      border: none;
+      padding: 16px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      margin-top: 8px;
+    }
+    .btn-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #110d05;
+      padding: 70px 8% 40px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: 8px;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .footer-tagline {
+      color: var(--mist);
+      font-size: 0.82rem;
+      line-height: 1.8;
+      max-width: 240px;
+    }
+    .footer-col h4 {
+      font-size: 0.6rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 22px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li {
+      color: var(--mist);
+      font-size: 0.82rem;
+      line-height: 2;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .footer-col li:hover { color: var(--cream); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-bottom p {
+      font-size: 0.7rem;
+      color: rgba(140,125,106,0.5);
+      letter-spacing: 1px;
+    }
+    .footer-bottom-links {
+      display: flex;
+      gap: 30px;
+    }
+    .footer-bottom-links a {
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      color: rgba(140,125,106,0.5);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .footer-bottom-links a:hover { color: var(--mist); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes scrollDrop {
+      0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+      50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+      51%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+      100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── REVEAL ON SCROLL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav { padding: 24px 36px; }
+      nav.scrolled { padding: 16px 36px; }
+      .about { grid-template-columns: 1fr; }
+      .about-image { height: 480px; }
+      .about-body { padding: 60px 40px; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .experience { grid-template-columns: 1fr; }
+      .reservation { grid-template-columns: 1fr; gap: 50px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      nav { padding: 20px 24px; }
+      .about-body { padding: 50px 28px; }
+      .menu-section { padding: 80px 6%; }
+      .reservation { padding: 80px 6%; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a class="nav-logo" href="#">AURA</a>
+    <ul class="nav-links">
+      <li><a href="#about">Nosotros</a></li>
+      <li><a href="#menu">Menú</a></li>
+      <li><a href="#experience">Experiencia</a></li>
+      <li><a href="#reservation">Reservar</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Saltillo &nbsp;·&nbsp; Est. 2026</p>
+      <h1 class="hero-title">AURA<br><em>Café</em></h1>
+      <p class="hero-subtitle">Gastronomía · Diseño · Experiencia</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'})">Reservar Mesa</button>
+        <button class="btn-ghost" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Ver Menú</button>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>Descubrir</span>
+      <div class="scroll-line"></div>
+    </div>
+  </header>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span class="marquee-item">Café de Especialidad</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-item">Gastronomía Europea</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-item">Diseño Premium</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-item">Momentos Únicos</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-item">Carta de Vinos</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-item">Brunch & Cenas</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-item">Café de Especialidad</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-item">Gastronomía Europea</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-item">Diseño Premium</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-item">Momentos Únicos</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-item">Carta de Vinos</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-item">Brunch & Cenas</span>
+      <span class="marquee-dot">◆</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="about-image">
+      <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=2070&auto=format&fit=crop" alt="Interior Aura Café" loading="lazy">
+      <div class="about-image-label">Interiorismo · 2026</div>
+    </div>
+    <div class="about-body">
+      <p class="section-tag reveal">01 &nbsp;— &nbsp;Sobre Nosotros</p>
+      <h2 class="reveal">Una experiencia<br>más allá del <em>café</em></h2>
+      <div class="about-divider reveal"></div>
+      <p class="reveal">
+        Aura Café nació de la obsesión por los detalles: la textura del
+        espresso, la calidez de la luz al atardecer, la música que llena el
+        espacio sin interrumpir la conversación.
+      </p>
+      <p class="reveal">
+        Inspirados en los grandes cafés europeos, diseñamos cada rincón
+        para que cada visita sea un momento que valga la pena recordar.
+      </p>
+      <div class="about-stats reveal">
+        <div>
+          <div class="stat-num">48</div>
+          <div class="stat-label">Asientos</div>
+        </div>
+        <div>
+          <div class="stat-num">12</div>
+          <div class="stat-label">Blends Exclusivos</div>
+        </div>
+        <div>
+          <div class="stat-num">6</div>
+          <div class="stat-label">Años de Estudio</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU PREVIEW -->
+  <section id="menu" class="menu-section">
+    <div class="section-header reveal">
+      <h2>Nuestra <em>Carta</em></h2>
+      <a href="#">Ver menú completo →</a>
+    </div>
+    <div class="menu-grid reveal">
+      <div class="menu-card">
+        <div class="menu-card-num">01</div>
+        <h3>Cortado de Especialidad</h3>
+        <p>Blend de origen único de Etiopía y Colombia, con notas de jazmín, bergamota y cacao oscuro.</p>
+        <div class="menu-card-price">$68 MXN</div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-num">02</div>
+        <h3>Tostadas Aura</h3>
+        <p>Pan masa madre artesanal, aguacate de rancho, huevo pochado, aceite de oliva, flor de sal y ralladura de limón.</p>
+        <div class="menu-card-price">$185 MXN</div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-num">03</div>
+        <h3>Croque Monsieur</h3>
+        <p>Jamón serrano importado, queso gruyère fundido, bechamel de trufa, pan brioche tostado en mantequilla.</p>
+        <div class="menu-card-price">$215 MXN</div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-num">04</div>
+        <h3>Flat White Honey</h3>
+        <p>Doble ristretto con leche de avena texturizada, miel de mezquite y polvo de cardamomo.</p>
+        <div class="menu-card-price">$82 MXN</div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-num">05</div>
+        <h3>Tartaleta de Temporada</h3>
+        <p>Masa sablé mantequilla, crema de pistache, frutas de temporada y gel de frutos rojos. Cambia cada semana.</p>
+        <div class="menu-card-price">$145 MXN</div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-num">06</div>
+        <h3>Granola Aura Bowl</h3>
+        <p>Granola horneada en casa con miel y avellanas, yogurt griego, fruta fresca y semillas de chía.</p>
+        <div class="menu-card-price">$160 MXN</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE PANELS -->
+  <div id="experience" class="experience">
+    <div class="exp-panel">
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop" alt="Café" loading="lazy">
+      <div class="exp-panel-content">
+        <p class="exp-panel-tag">Especialidad</p>
+        <h3>El Arte del Café</h3>
+      </div>
+    </div>
+    <div class="exp-panel">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop" alt="Gastronomía" loading="lazy">
+      <div class="exp-panel-content">
+        <p class="exp-panel-tag">Gastronomía</p>
+        <h3>Cocina de Autor</h3>
+      </div>
+    </div>
+    <div class="exp-panel">
+      <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=2070&auto=format&fit=crop" alt="Ambiente" loading="lazy">
+      <div class="exp-panel-content">
+        <p class="exp-panel-tag">Diseño</p>
+        <h3>Ambiente Premium</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESERVATION -->
+  <section id="reservation" class="reservation">
+    <div class="reservation-text">
+      <p class="section-tag reveal">04 &nbsp;— &nbsp;Reservaciones</p>
+      <h2 class="reveal">Reserva tu<br><em>momento</em></h2>
+      <div class="about-divider reveal"></div>
+      <p class="reveal">
+        Asegura tu lugar en Aura Café y vive una experiencia diseñada desde
+        la primera bienvenida hasta el último sorbo. Disponibilidad limitada.
+      </p>
+      <p class="reveal" style="margin-top:16px">
+        Horario: Lunes a Viernes 8:00 – 22:00 h<br>
+        Sábados y Domingos 9:00 – 23:00 h
+      </p>
+    </div>
+    <div class="reservation-form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" placeholder="Tu nombre completo">
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="tel" placeholder="+52 844 000 0000">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Fecha</label>
+          <input type="date">
+        </div>
+        <div class="form-group">
+          <label>Hora</label>
+          <select>
+            <option value="">Seleccionar</option>
+            <option>08:00 h</option>
+            <option>09:00 h</option>
+            <option>10:00 h</option>
+            <option>12:00 h</option>
+            <option>14:00 h</option>
+            <option>16:00 h</option>
+            <option>18:00 h</option>
+            <option>20:00 h</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Número de Personas</label>
+        <select>
+          <option value="">Seleccionar</option>
+          <option>1 persona</option>
+          <option>2 personas</option>
+          <option>3 – 4 personas</option>
+          <option>5 – 6 personas</option>
+          <option>Evento privado (7+)</option>
+        </select>
+      </div>
+      <button class="btn-submit" onclick="handleReservation()">Confirmar Reservación</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">AURA</div>
+        <p class="footer-tagline">Una experiencia premium donde el café, la gastronomía y el diseño convergen en Saltillo.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Visitar</h4>
+        <ul>
+          <li>Blvd. Fundadores 123</li>
+          <li>Saltillo, Coahuila</li>
+          <li>México, C.P. 25000</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Horarios</h4>
+        <ul>
+          <li>Lun – Vie: 8 – 22 h</li>
+          <li>Sáb: 9 – 23 h</li>
+          <li>Dom: 9 – 21 h</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li>hola@auracafe.mx</li>
+          <li>+52 844 000 0000</li>
+          <li>@auracafe.mx</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Aura Café — Concept Design</p>
+      <div class="footer-bottom-links">
+        <a href="#">Aviso de Privacidad</a>
+        <a href="#">Términos</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Reservation
+    function handleReservation() {
+      const name = document.querySelector('input[type="text"]').value.trim();
+      if (!name) {
+        alert('Por favor ingresa tu nombre para continuar.');
+        return;
+      }
+      alert(`¡Gracias, ${name}! Tu reservación está siendo procesada. Te confirmaremos vía WhatsApp en breve.`);
+    }
+  </script>
+</body>
+</html>
